@@ -1,10 +1,32 @@
-version: '2.1'
+version: '3.7'
 
 services:
+
   demococker:
-    image: demococker
-    build: .
-    environment:
-      NODE_ENV: production
+    container_name: demococker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
     ports:
-      - 3000:3000
+      - '4200:4200'
+# version: '2.1'
+
+# services:
+#   demococker:
+#     image: demococker:v1
+#     deploy:
+#       replicas: 5
+#       resources:
+#         limits:
+#           cpus: "0.1"
+#           memory: 50M
+#       restart_policy:
+#         condition: on-failure
+#     build: .
+#     environment:
+#       NODE_ENV: production
+#     ports:
+#       - 3000:4200
